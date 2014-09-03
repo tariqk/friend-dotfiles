@@ -1,0 +1,20 @@
+#!/bin/bash
+# The Wallpaper Update Script
+# Commentary: Exceedingly brittle, only works on ONE feed right now, on ONE website (nominally Reddit). 
+# TODO: Use the following instead: wget -q -O - "http://www.reddit.com/r/earthporn+botanicalporn+waterporn+seaporn+skyporn+fireporn+OR+desertporn+springporn+summerporn+autumnporn+winterporn+weatherporn+geologyporn+spaceporn+beachporn+cityporn+villageporn+ruralporn+infrastructureporn+bridgeporn+aerialporn+exposureporn/.json?limit=100" | grep -Po '"url"[ :]+\K((?=\[)\[[^]]*\]|(?=\{)\{[^\}]*\}|\"[^"]*\")' | sed 's/^"\(.*\)"$/\1/' for images, and wget -q -O - "http://www.reddit.com/r/earthporn+botanicalporn+waterporn+seaporn+skyporn+fireporn+OR+desertporn+springporn+summerporn+autumnporn+winterporn+weatherporn+geologyporn+spaceporn+beachporn+cityporn+villageporn+ruralporn+infrastructureporn+bridgeporn+aerialporn+exposureporn/.json?limit=100" | grep -Po '"after"[ :]+\K((?=\[)\[[^]]*\]|(?=\{)\{[^\}]*\}|\"[^"]*\")' | sed 's/^"\(.*\)"$/\1/' to get the next pag
+
+FEED='http://www.reddit.com/r/earthporn+botanicalporn+waterporn+seaporn+skyporn+fireporn+OR+desertporn+springporn+summerporn+autumnporn+winterporn+weatherporn+geologyporn+spaceporn+beachporn+cityporn+villageporn+ruralporn+infrastructureporn+bridgeporn+aerialporn+exposureporn/.rss?limit=100'
+XPATH='rss/channel/item/description'
+REGEXP='(?<=<a href=")[^"]*(?=">\[link\]</a>)'
+FILTER='jpg|png|jpeg'
+WALLDIR="$HOME/wallpapers/"
+
+OLD_NUMBER=`find $WALLDIR -type f | grep -E "$FILTER" | wc -l`
+
+echo "Current wallpaper file count as of $(date  for $WALLDIR is $OLD_NUMBER. Downloading..."
+
+wget -q -O - "$FEED" | xmlstarlet sel -m $XPATH -T -t -v "." | grep -oP "$REGEXP" | sort | uniq | grep -E "$FILTER" | wget -qNxc -i - -P "$WALLDIR"
+
+NEW_NUMBER=`find $WALLDIR -type f | grep -E "$FILTER" | wc -l`
+
+echo "Download complete. New walllpaper file count: $NEW_NUMBER. Wallpapers have increased by $(expr $NEW_NUMBER - $OLD_NUMBER)."

@@ -1,0 +1,15 @@
+# /bin/bash
+
+NUMUPDATE=$( cat /var/cache/apt/upgrade-num )
+
+if [ $NUMUPDATE -eq 1 ]; then
+    MSG="There is an update available."
+elif [ $NUMUPDATE -gt 1 ]; then
+    MSG="There are $NUMUPDATE updates available."
+fi
+
+
+if [ ! -z "$MSG" ]; then
+    notify-send -u normal -t 0 -i info "System Update Available" "$MSG"
+fi
+

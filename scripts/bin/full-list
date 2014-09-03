@@ -1,0 +1,20 @@
+#!/bin/bash
+
+baseurl="http://www.reddit.com/r/earthporn+botanicalporn+waterporn+seaporn+skyporn+fireporn+desertporn+springporn+summerporn+autumnporn+winterporn+weatherporn+geologyporn+spaceporn+beachporn+cityporn+villageporn+ruralporn+infrastructureporn+bridgeporn+aerialporn+exposureporn/.json?limit=100"
+
+while :; do
+    if [ -z $after ]; then
+        if [[ $first == done ]]; then
+            exit 0
+        else
+            url="$baseurl"
+            first="done"
+        fi
+    else
+        url="$baseurl&after=$after"
+    fi
+
+    raw_data=$( wget -q -O - $url )
+    after=`echo $raw_data | grep -Po '"after"[ :]+\K((?=\[)\[[^]]*\]|(?=\{)\{[^\}]*\}|\"[^"]*\")' | sed "s/\"//g"`
+    echo $raw_data | grep -Po '"url"[ :]+\K((?=\[)\[[^]]*\]|(?=\{)\{[^\}]*\}|\"[^"]*\")' | sed "s/\"//g"
+done
