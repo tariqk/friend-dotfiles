@@ -108,3 +108,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Enable prompt separator
+# Source: http://emilis.github.io/2011/09/12/customized-bash-prompt.html
+
+if [ -n "$PS1" -a -f "$HOME/.bash_ps1" ]; then
+    . "$HOME/.bash_ps1"
+fi
