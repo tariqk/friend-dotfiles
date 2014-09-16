@@ -91,3 +91,7 @@ cb-cowpowers &
 
 ## Run the conky
 conky -q &
+
+## Run yakuake
+
+yakuake
