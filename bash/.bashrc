@@ -111,7 +111,13 @@ fi
 
 # Enable prompt separator
 # Source: http://emilis.github.io/2011/09/12/customized-bash-prompt.html
+# Modified to accomodate ideas found to fix broken TRAMP behaviour:
+# http://stackoverflow.com/questions/6954479/emacs-tramp-doesnt-work
 
-if [ -n "$PS1" -a -f "$HOME/.bash_ps1" ]; then
-    . "$HOME/.bash_ps1"
+if [ "$TERM" != "dumb" ]; then
+    if [ -n "$PS1" -a -f "$HOME/.bash_ps1" ]; then
+        . "$HOME/.bash_ps1"
+    fi
+else
+    PS1="> "
 fi
