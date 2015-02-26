@@ -23,10 +23,6 @@ eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 ## Set root window colour
 hsetroot -solid "#2E3436" &
 
-## Dual monitor setup
-
-xrandr --output CRT1 --mode 1600x900 --pos 1600x0 --rotate normal --output DFP2 --mode 1600x900 --pos 0x0 --rotate normal --output DFP1 --off
-
 ## Turn on xflux
 
 xflux -l 3.1 -g 101.7
