@@ -51,11 +51,20 @@ ${font Liberation Sans:size=9}$alignc S Y S T E M    I N F O
 ${hr}
 ${font Liberation Sans:bold:size=9}Host:${font Liberation Sans:size=9}$alignr$nodename
 ${font Liberation Sans:bold:size=9}Uptime:${font Liberation Sans:size=9}$alignr$uptime
-${font Liberation Sans:bold:size=9}RAM:${font Liberation Sans:size=9}$alignr$mem/$memmax
-${font Liberation Sans:bold:size=9}Swap usage:${font Liberation Sans:size=9}$alignr$swap/$swapmax
-${font Liberation Sans:bold:size=9}Disk usage:${font Liberation Sans:size=9}$alignr${fs_used /}/${fs_size /}
+${font Liberation Sans:bold:size=9}RAM:${font Liberation Sans:size=9}$alignr$mem / $memmax
+${font Liberation Sans:bold:size=9}Swap usage:${font Liberation Sans:size=9}$alignr$swap / $swapmax
+${font Liberation Sans:bold:size=9}Disk usage:
+${font Liberation Sans:bold:size=9}/:${font Liberation Sans:size=9}$alignr${fs_used /} / ${fs_size /}
+${fs_bar 3,200 /}
+${font Liberation Sans:bold:size=9}/usr:${font Liberation Sans:size=9}$alignr${fs_used /usr} / ${fs_size /usr}
+${fs_bar 3,200 /usr}
+${font Liberation Sans:bold:size=9}/home:${font Liberation Sans:size=9}$alignr${fs_used /home} / ${fs_size /home}
+${fs_bar 3,200 /home}
+${font Liberation Sans:bold:size=9}/tmp:${font Liberation Sans:size=9}$alignr${fs_used /tmp} / ${fs_size /tmp}
+${fs_bar 3,200 /tmp}
+${font Liberation Sans:bold:size=9}/var:${font Liberation Sans:size=9}$alignr${fs_used /var} / ${fs_size /var}
+${fs_bar 3,200 /var}
 ${font Liberation Sans:bold:size=9}CPU usage:${font Liberation Sans:size=9}$alignr${cpu cpu0}%
-
 
 ${font Liberation Sans:size=9}$alignc S H O R T C U T    K E Y S
 ${hr}
