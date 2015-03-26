@@ -38,7 +38,7 @@ default_shade_color 000000
 default_outline_color 828282
 alignment top_right
 gap_x 12
-gap_y 56
+gap_y 42
 no_buffers yes
 uppercase no
 cpu_avg_samples 2
@@ -50,9 +50,13 @@ TEXT
 ${font Liberation Sans:size=9}$alignc S Y S T E M    I N F O
 ${hr}
 ${font Liberation Sans:bold:size=9}Host:${font Liberation Sans:size=9}$alignr$nodename
+${font Liberation Sans:bold:size=9}Internal IP:${font Liberation Sans:size=9}$alignr${addr wlan0}
+${font Liberation Sans:bold:size=9}External IP:${font Liberation Sans:size=9}$alignr${exec dig +short myip.opendns.com @resolver1.opendns.com || echo "None Available"}
+
 ${font Liberation Sans:bold:size=9}Uptime:${font Liberation Sans:size=9}$alignr$uptime
 ${font Liberation Sans:bold:size=9}RAM:${font Liberation Sans:size=9}$alignr$mem / $memmax
-${font Liberation Sans:bold:size=9}Swap usage:${font Liberation Sans:size=9}$alignr$swap / $swapmax
+${font Liberation Sans:bold:size=9}CPU :${font Liberation Sans:size=9}$alignr${cpu cpu0}%
+
 ${font Liberation Sans:bold:size=9}Disk usage:
 ${font Liberation Sans:bold:size=9}/:${font Liberation Sans:size=9}$alignr${fs_used /} / ${fs_size /}
 ${fs_bar 3,200 /}
@@ -64,7 +68,8 @@ ${font Liberation Sans:bold:size=9}/tmp:${font Liberation Sans:size=9}$alignr${f
 ${fs_bar 3,200 /tmp}
 ${font Liberation Sans:bold:size=9}/var:${font Liberation Sans:size=9}$alignr${fs_used /var} / ${fs_size /var}
 ${fs_bar 3,200 /var}
-${font Liberation Sans:bold:size=9}CPU usage:${font Liberation Sans:size=9}$alignr${cpu cpu0}%
+${font Liberation Sans:bold:size=9}swap:${font Liberation Sans:size=9}$alignr$swap / $swapmax
+${swapbar 3,200}
 
 ${font Liberation Sans:size=9}$alignc S H O R T C U T    K E Y S
 ${hr}

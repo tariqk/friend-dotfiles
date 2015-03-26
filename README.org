@@ -12,11 +12,35 @@ The dotfiles I've decided to save for my desktop, a dual-screen machine running 
 
 Right now, just the following:
 
-- =bash=: just the =bashrc= file and the =bash-logout= file. Still vanilla.
-- =desktop-stuff/=: a whole bunch of files related to the openbox window manager:
-  + =.conkyrc=: Still mostly the vanilla version that comes with Waldorf. This way I can keep track of the changes I make.
-  + =.XCompose=: Currently, a standard template for XCompose. Either I'll split this into modular files and =include= them properly or leave it as one big mess.
-  + =.config=: Stuff for openbox & tint2. Still (mostly) vanilla at this point.
+*** =bash=:
+- just the =bashrc= file and the =bash-logout= file. Still vanilla.
+*** =desktop-stuff/=:
+- a whole bunch of files related to the openbox window manager:
+**** =.conkyrc=:
+- Some changes have been made, to better reflect the state of the partitions I have. Mostly rearranging though at this point.
+**** =.XCompose=:
+- Currently, a standard template for XCompose. Either I'll split this into modular files and =include= them properly or leave it as one big mess.
+**** =.config=:
+- Stuff for openbox & tint2. Still (mostly) vanilla at this point.
+- Some changes made to =autostart=; mostly to run =xflux=.
+- Removed the =xrandr= invocation, because I don't really need it any more.
+*** =scripts/bin=:
+- the following scripts that get run every once in a while:
+**** =check-updates=
+- coupled with a (root) =anacron= job that updates =/var/cache/apt/upgrade-num=. Check =anacrontab.backup= for the example.
+- Check out the =crontab.backup= file for more information on how it gets run as a user.
+**** =cycle-wallpapers=
+- Randomly cycles through wallpapers for each screen. Still hard-coded in many ways; needs to be improved.
+**** =wallpaper-download=
+- Downloads the necessary wallpapers. Very klugey, such ugh.
+**** =full-list=
+- Like =wallpaper-downloads=, but you run only once, since it digs through reddit's threads to find ALL the image files it can.
+**** =rc.xquery=
+- This is for a [[http://crunchbang.org/forums/viewtopic.php?id=6842][partially-completed thing]] that is referenced in commit [[https://github.com/tariqk/friend-dotfiles/commit/7c75e6cc85599f571a051ef0d9779aa81b0da85c][=7c75e6c=]]. Shit, I've forgotten about this. Man, this is embarassing.
+*** =scripts/backup=:
+- Two files: =anacrontab.backup= and =crontab.backup=.
+  + For =anacron=, that's supposed to go into =/etc/anacrontab=.
+  + for =cron=, use =crontab crontab.backup=.
 
 ** What /won't ever/ included in here
 
@@ -42,7 +66,7 @@ The instructions and the way this was set up was based on [[http://brandon.inver
 
 ** TODO:
 
-- [ ] Probably add the shell scripts I have in =~/bin/=.
+- [X] Probably add the shell scripts I have in =~/bin/=.
 - [-] Add more stuff as I customise the system more.
   - [X] One example, for login shells: a =.bash_profile= file.
   - [ ] Standardise the environment variables, specifically =$PATH=.
