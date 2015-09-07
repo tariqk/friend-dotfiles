@@ -34,5 +34,5 @@ LOGNAME=tariqk
 # 
 # m h  dom mon dow   command
 
-*/5 * * * * cycle-wallpapers 2>>$HOME/wallpapers/errors.log | while read line; do notify-send -t 7500 -i image-x-generic -u low "Wallpaper Update" "$line"; done
+*/5 * * * * cycle-wallpapers 2>>$HOME/wallpapers/errors.log
 0 * * * * /usr/sbin/anacron -s -t $HOME/.anacron/etc/anacrontab -S $HOME/.anacron/spool

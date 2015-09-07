@@ -19,7 +19,7 @@ function setwallpaper {
     # TODO: Modify it so that rather than use a line to modify this, we just use the screen name.
     # Other potential features: allow you to use different modes rather than centre-and-zoom.
     WALLPAPER=`find $WALLPAPERDIR -type f | grep -E "jpeg|jpg|png" | shuf -n1`
-    echo "$(date +'%Y-%m-%d %R:%S\') -- Setting line $1 to $WALLPAPER."
+    # echo "$(date +'%Y-%m-%d %R:%S\') -- Setting line $1 to $WALLPAPER."
     sed -i "$1 c\file=$WALLPAPER" $CONFIG
     }
 
